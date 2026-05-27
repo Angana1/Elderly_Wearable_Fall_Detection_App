@@ -1,0 +1,346 @@
+/* =========================================================================
+   AEGIS Design System — Colors & Type
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* -----------------------------------------------------------------------
+     COLORS — AEGIS palette (warm, protective, dashboard-clear)
+     ---------------------------------------------------------------------- */
+
+  /* Canvas & surfaces */
+  --aegis-canvas:               #f5ebe3;
+  --aegis-canvas-soft:          #fbf6ef;
+  --aegis-surface-warm:         #efe2d5;
+  --aegis-surface-card:         #fffaf3;
+  --aegis-surface-raised:       #f7efe6;
+  --aegis-surface-cream-strong: #e8e0d2;
+  --aegis-sidebar-cream:        #f2e4d9;
+
+  /* Dark monitor surfaces */
+  --aegis-dashboard-dark:           #191922;
+  --aegis-dashboard-dark-elevated:  #252433;
+  --aegis-dashboard-dark-soft:      #20202b;
+
+  /* Ink & text */
+  --aegis-ink-dark:        #191922;
+  --aegis-ink-soft:        #4b4654;
+  --aegis-muted-plum:      #6f6575;
+  --aegis-muted-soft:      #8e8b82;
+  --aegis-on-dark:         #fff8ef;
+  --aegis-on-dark-muted:   #bdb4aa;
+  --aegis-on-primary:      #ffffff;
+
+  /* Brand & emotional accents */
+  --aegis-clay:            #b96350;
+  --aegis-clay-active:     #9f4f41;
+  --aegis-clay-soft:       #d7a192;
+  --aegis-deep-green:      #1f5a4f;
+  --aegis-deep-green-active: #17463d;
+  --aegis-green-soft:      #dfeee8;
+
+  /* Semantic */
+  --aegis-alert-red:        #b85045;
+  --aegis-alert-red-soft:   #f2d6cf;
+  --aegis-warning-amber:    #c9943e;
+  --aegis-warning-amber-soft: #f6e5c8;
+  --aegis-safe-green:       #2f7a64;
+  --aegis-location-bluegray:#667b86;
+  --aegis-sidebar-active-dot: #b96350;
+
+  /* Hairlines & dividers */
+  --aegis-divider:       #eadfd5;
+  --aegis-hairline:      #e6dfd8;
+  --aegis-hairline-soft: #ebe6df;
+
+  /* -----------------------------------------------------------------------
+     SEMANTIC ALIASES
+     ---------------------------------------------------------------------- */
+  --bg:           var(--aegis-canvas);
+  --bg-card:      var(--aegis-surface-card);
+  --bg-raised:    var(--aegis-surface-raised);
+  --bg-dark:      var(--aegis-dashboard-dark);
+  --bg-dark-elev: var(--aegis-dashboard-dark-elevated);
+
+  --fg:        var(--aegis-ink-dark);
+  --fg-1:      var(--aegis-ink-dark);
+  --fg-2:      var(--aegis-ink-soft);
+  --fg-3:      var(--aegis-muted-plum);
+  --fg-4:      var(--aegis-muted-soft);
+  --fg-on-dark:        var(--aegis-on-dark);
+  --fg-on-dark-muted:  var(--aegis-on-dark-muted);
+
+  --accent:        var(--aegis-clay);
+  --accent-active: var(--aegis-clay-active);
+  --action:        var(--aegis-deep-green);
+  --action-active: var(--aegis-deep-green-active);
+
+  --border:        var(--aegis-divider);
+  --border-soft:   var(--aegis-hairline-soft);
+  --border-dark:   rgba(255, 248, 239, 0.08);
+
+  /* -----------------------------------------------------------------------
+     TYPE — families
+     ---------------------------------------------------------------------- */
+  --font-serif: "Cormorant Garamond", "Tiempos Headline", Georgia, "Times New Roman", serif;
+  --font-sans:  "Inter", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* -----------------------------------------------------------------------
+     RADII
+     ---------------------------------------------------------------------- */
+  --r-xs:   4px;
+  --r-sm:   6px;
+  --r-md:   8px;
+  --r-lg:   12px;
+  --r-xl:   16px;
+  --r-2xl:  24px;
+  --r-pill: 9999px;
+  --r-full: 9999px;
+
+  /* -----------------------------------------------------------------------
+     SPACING
+     ---------------------------------------------------------------------- */
+  --s-xxs:     4px;
+  --s-xs:      8px;
+  --s-sm:     12px;
+  --s-md:     16px;
+  --s-lg:     24px;
+  --s-xl:     32px;
+  --s-xxl:    48px;
+  --s-section: 96px;
+
+  /* -----------------------------------------------------------------------
+     SHADOWS
+     ---------------------------------------------------------------------- */
+  --shadow-rest: none;
+  --shadow-hover: 0 1px 3px rgba(25, 25, 34, 0.06);
+  --shadow-sheet: 0 -8px 32px rgba(25, 25, 34, 0.08);
+  --shadow-modal: 0 24px 64px rgba(25, 25, 34, 0.18);
+  --inset-press: inset 0 1px 0 rgba(25, 25, 34, 0.08);
+
+  /* -----------------------------------------------------------------------
+     MOTION
+     ---------------------------------------------------------------------- */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+}
+
+/* =========================================================================
+   TYPE SCALE — semantic vars
+   ========================================================================= */
+
+:root {
+  /* Display (serif) */
+  --t-display-xl-size: 56px;
+  --t-display-xl-line: 1.08;
+  --t-display-xl-track: -1.2px;
+
+  --t-display-lg-size: 42px;
+  --t-display-lg-line: 1.12;
+  --t-display-lg-track: -0.8px;
+
+  --t-display-md-size: 32px;
+  --t-display-md-line: 1.18;
+  --t-display-md-track: -0.5px;
+
+  --t-display-sm-size: 26px;
+  --t-display-sm-line: 1.22;
+  --t-display-sm-track: -0.3px;
+
+  /* Titles (sans) */
+  --t-title-lg-size: 22px;
+  --t-title-lg-line: 1.3;
+
+  --t-title-health-size: 20px;
+  --t-title-health-line: 1.35;
+  --t-title-health-track: -0.1px;
+
+  --t-title-md-size: 18px;
+  --t-title-md-line: 1.4;
+
+  --t-title-sm-size: 16px;
+  --t-title-sm-line: 1.4;
+
+  /* Body */
+  --t-body-readable-size: 17px;
+  --t-body-readable-line: 1.6;
+
+  --t-body-support-size: 15px;
+  --t-body-support-line: 1.55;
+
+  --t-body-sm-size: 14px;
+  --t-body-sm-line: 1.55;
+
+  --t-caption-size: 13px;
+  --t-caption-line: 1.4;
+
+  --t-status-label-size: 13px;
+  --t-status-label-line: 1.4;
+  --t-status-label-track: 0.8px;
+
+  --t-metric-size: 32px;
+  --t-metric-line: 1.1;
+  --t-metric-track: -0.5px;
+}
+
+/* =========================================================================
+   RESETS — light, opt-in
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--t-body-readable-size);
+  line-height: var(--t-body-readable-line);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================================
+   SEMANTIC TYPE CLASSES
+   ========================================================================= */
+
+.t-display-xl,
+.t-display-lg,
+.t-display-md,
+.t-display-sm,
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.t-display-xl, h1 {
+  font-size: var(--t-display-xl-size);
+  line-height: var(--t-display-xl-line);
+  letter-spacing: var(--t-display-xl-track);
+}
+.t-display-lg, h2 {
+  font-size: var(--t-display-lg-size);
+  line-height: var(--t-display-lg-line);
+  letter-spacing: var(--t-display-lg-track);
+}
+.t-display-md, h3 {
+  font-size: var(--t-display-md-size);
+  line-height: var(--t-display-md-line);
+  letter-spacing: var(--t-display-md-track);
+}
+.t-display-sm {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--t-display-sm-size);
+  line-height: var(--t-display-sm-line);
+  letter-spacing: var(--t-display-sm-track);
+}
+
+.t-title-lg,
+.t-title-health,
+.t-title-md,
+.t-title-sm,
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.t-title-lg, h4 {
+  font-size: var(--t-title-lg-size);
+  line-height: var(--t-title-lg-line);
+}
+.t-title-health {
+  font-size: var(--t-title-health-size);
+  line-height: var(--t-title-health-line);
+  letter-spacing: var(--t-title-health-track);
+}
+.t-title-md, h5 {
+  font-size: var(--t-title-md-size);
+  line-height: var(--t-title-md-line);
+}
+.t-title-sm, h6 {
+  font-size: var(--t-title-sm-size);
+  line-height: var(--t-title-sm-line);
+}
+
+.t-body, p {
+  font-family: var(--font-sans);
+  font-size: var(--t-body-readable-size);
+  line-height: var(--t-body-readable-line);
+  color: var(--fg-2);
+  margin: 0;
+}
+.t-body-support {
+  font-family: var(--font-sans);
+  font-size: var(--t-body-support-size);
+  line-height: var(--t-body-support-line);
+  color: var(--fg-2);
+}
+.t-body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--t-body-sm-size);
+  line-height: var(--t-body-sm-line);
+  color: var(--fg-3);
+}
+.t-caption {
+  font-family: var(--font-sans);
+  font-size: var(--t-caption-size);
+  line-height: var(--t-caption-line);
+  font-weight: 500;
+  color: var(--fg-3);
+}
+.t-status-label {
+  font-family: var(--font-sans);
+  font-size: var(--t-status-label-size);
+  line-height: var(--t-status-label-line);
+  letter-spacing: var(--t-status-label-track);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.t-metric {
+  font-family: var(--font-sans);
+  font-size: var(--t-metric-size);
+  line-height: var(--t-metric-line);
+  letter-spacing: var(--t-metric-track);
+  font-weight: 600;
+  color: var(--fg-1);
+}
+.t-mono, code, pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================================================
+   AEGIS BRAND MARK
+   ========================================================================= */
+.aegis-mark {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--aegis-clay);
+  vertical-align: -1px;
+  margin-right: 8px;
+}
+.aegis-mark--lg { width: 16px; height: 16px; margin-right: 10px; vertical-align: -2px; }
+
+.aegis-wordmark {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.3px;
+  color: var(--fg-1);
+  display: inline-flex;
+  align-items: center;
+}

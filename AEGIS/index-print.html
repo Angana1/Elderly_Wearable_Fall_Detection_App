@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AEGIS — Caregiver Dashboard (PDF)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/app.css">
+
+<style>
+  /* Print layout — each .pdf-page is a self-contained, paginated screen */
+  html, body { background: var(--aegis-canvas); }
+  body { overflow: visible !important; }
+
+  .pdf-cover {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    text-align: center;
+    background: var(--aegis-canvas);
+  }
+  .pdf-cover__brand { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+  .pdf-cover__brand-name {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+  .pdf-cover h1 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+    margin: 0;
+    max-width: 800px;
+  }
+  .pdf-cover .tag {
+    font-style: italic;
+    color: var(--aegis-muted-plum);
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .pdf-cover .body {
+    margin-top: 32px;
+    color: var(--aegis-ink-soft);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+  .pdf-cover .meta {
+    margin-top: 48px;
+    color: var(--aegis-muted-plum);
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .pdf-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 56px 56px 48px;
+    background: var(--aegis-canvas);
+    break-after: page;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .pdf-page__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--aegis-divider);
+  }
+  .pdf-page__title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 34px;
+    letter-spacing: -0.6px;
+    margin: 0;
+  }
+  .pdf-page__caption {
+    color: var(--aegis-muted-plum);
+    font-size: 14px;
+    margin-top: 4px;
+    max-width: 540px;
+  }
+  .pdf-page__num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--aegis-muted-plum);
+  }
+  .pdf-page__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--aegis-ink-dark);
+  }
+  .pdf-page__content { flex: 1; min-height: 0; }
+
+  /* Embedded view styling — each page hosts a stripped-down render of a screen */
+  .pdf-view {
+    background: var(--aegis-surface-card);
+    border: 1px solid var(--aegis-divider);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  /* Hide interactive chrome */
+  .pdf-view .topbar { display: none; }
+  .pdf-view .demo-switcher { display: none; }
+  .pdf-view .page-head { padding-top: 0; }
+  .pdf-view .ask-input { display: none; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: var(--aegis-canvas); }
+    .pdf-page, .pdf-cover { break-after: page; page-break-after: always; }
+    .pdf-page:last-child, .pdf-cover:last-child { break-after: auto; page-break-after: auto; }
+    .pdf-view { box-shadow: none; }
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="src/data.jsx"></script>
+<script type="text/babel" src="src/components.jsx"></script>
+<script type="text/babel" src="src/Logo.jsx"></script>
+<script type="text/babel" src="src/Sidebar.jsx"></script>
+<script type="text/babel" src="src/TopBar.jsx"></script>
+<script type="text/babel" src="src/DemoSwitcher.jsx"></script>
+<script type="text/babel" src="src/views/LoginView.jsx"></script>
+<script type="text/babel" src="src/views/OnboardingView.jsx"></script>
+<script type="text/babel" src="src/views/PairView.jsx"></script>
+<script type="text/babel" src="src/views/HomeView.jsx"></script>
+<script type="text/babel" src="src/views/AlertsView.jsx"></script>
+<script type="text/babel" src="src/views/ActivityView.jsx"></script>
+<script type="text/babel" src="src/views/LocationView.jsx"></script>
+<script type="text/babel" src="src/views/AskView.jsx"></script>
+<script type="text/babel" src="src/views/DeviceView.jsx"></script>
+<script type="text/babel" src="src/views/SettingsView.jsx"></script>
+
+<script type="text/babel">
+// Print app — renders a cover page + each major view stacked
+
+const PrintPage = ({ num, title, caption, children }) => (
+  <section className="pdf-page">
+    <div className="pdf-page__head">
+      <div>
+        <h2 className="pdf-page__title">{title}</h2>
+        {caption && <div className="pdf-page__caption">{caption}</div>}
+      </div>
+      <div style={{ textAlign: 'right' }}>
+        <div className="pdf-page__brand">
+          <LogoMark size={20} />
+          <span>AEGIS</span>
+        </div>
+        <div className="pdf-page__num" style={{ marginTop: 6 }}>Page {num}</div>
+      </div>
+    </div>
+    <div className="pdf-page__content">{children}</div>
+  </section>
+);
+
+// No-op props for views — they expect onScenarioChange etc but we won't trigger
+const noop = () => {};
+const stub = { onScenarioChange: noop, onLogout: null, onNavigate: noop };
+
+const PrintApp = () => {
+  React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+
+  return (
+    <div>
+      {/* Cover */}
+      <section className="pdf-cover">
+        <div className="pdf-cover__brand">
+          <LogoMark size={72} />
+          <span className="pdf-cover__brand-name">AEGIS</span>
+        </div>
+        <h1>Quiet protection for independent aging.</h1>
+        <div className="tag">A caregiver dashboard prototype</div>
+        <p className="body">
+          A discreet smart-bracelet safety system. AEGIS quietly watches for
+          possible falls, unusual inactivity, and device issues — and surfaces
+          only what a family caregiver needs to know, when they need to know it.
+        </p>
+        <div className="meta">Prototype · simulated demo data · not a medical device</div>
+      </section>
+
+      {/* 1. Welcome */}
+      <PrintPage num="01" title="Welcome" caption="Calm, plain-spoken entry — sets the tone of the product.">
+        <div className="pdf-view" style={{ display: 'flex', justifyContent: 'center', padding: 0, background: 'transparent', border: 'none' }}>
+          <div style={{ width: 460 }}>
+            <LoginView onSignIn={noop} onCreate={noop} onDemo={noop} />
+          </div>
+        </div>
+      </PrintPage>
+
+      {/* 2. Onboarding consent step */}
+      <PrintPage num="02" title="Onboarding & consent" caption="Two short consent agreements with expandable detail — older adult and caregiver.">
+        <div className="pdf-view">
+          <div className="kicker" style={{ marginBottom: 8 }}>A · Older adult consent</div>
+          <div style={{ fontSize: 16, color: 'var(--aegis-ink-dark)', lineHeight: 1.55, fontStyle: 'italic' }}>
+            "I agree that my AEGIS bracelet may share safety-related movement,
+            device status, and optional location information with selected
+            family members / caregivers."
+          </div>
+          <div className="grid-2" style={{ marginTop: 20 }}>
+            <Card tone="raised">
+              <div className="kicker" style={{ marginBottom: 8 }}>What will be shared</div>
+              <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.7, color: 'var(--aegis-ink-soft)' }}>
+                <li>Safety alerts</li>
+                <li>Bracelet worn / not worn status</li>
+                <li>Battery and connection status</li>
+                <li>Daily movement summaries if enabled</li>
+                <li>Location only according to selected privacy settings</li>
+              </ul>
+            </Card>
+            <Card tone="raised">
+              <div className="kicker" style={{ marginBottom: 8 }}>What will not be shared</div>
+              <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.7, color: 'var(--aegis-ink-soft)' }}>
+                <li>Continuous raw sensor streams</li>
+                <li>Public location</li>
+                <li>Medical diagnosis</li>
+                <li>Data for advertising</li>
+              </ul>
+            </Card>
+          </div>
+
+          <div style={{ marginTop: 28 }}>
+            <div className="kicker" style={{ marginBottom: 8 }}>B · Caregiver acknowledgement</div>
+            <div style={{ fontSize: 16, color: 'var(--aegis-ink-dark)', lineHeight: 1.55, fontStyle: 'italic' }}>
+              "I understand that AEGIS is a safety aid, not a medical diagnosis system,
+              and that alerts may require human confirmation."
+            </div>
+            <ul style={{ marginTop: 14, paddingLeft: 18, fontSize: 14, lineHeight: 1.7, color: 'var(--aegis-ink-soft)' }}>
+              <li>AEGIS detects possible safety events, not confirmed medical emergencies.</li>
+              <li>Fall alerts may be false positives and require human confirmation.</li>
+              <li>If I do not respond, alerts may be escalated to another trusted caregiver.</li>
+              <li>Emergency services should be contacted directly when there is immediate concern.</li>
+            </ul>
+          </div>
+        </div>
+      </PrintPage>
+
+      {/* 3. Pair bracelet */}
+      <PrintPage num="03" title="Pair the bracelet" caption="Pairing — QR, manual code, or use demo bracelet. Margaret never installs an app.">
+        <div className="pdf-view" style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 32, alignItems: 'center' }}>
+          <div className="qr-card" style={{ position: 'relative' }}>
+            <div className="qr-grid" />
+            <span className="qr-corner" style={{ position: 'absolute', bottom: 20, left: 20 }} />
+          </div>
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 500, fontSize: 28, margin: '0 0 8px', letterSpacing: '-0.4px' }}>
+              Connect the bracelet
+            </h3>
+            <p style={{ color: 'var(--aegis-muted-plum)', margin: '0 0 20px' }}>
+              Scan the QR code inside the bracelet box or on the charging card.
+            </p>
+            <div className="stack-12">
+              <Button variant="clay" icon="scan-line">Scan QR</Button>
+              <Button variant="ghost" icon="keyboard">Enter pairing code manually</Button>
+              <Button variant="text" icon="zap">Use demo bracelet</Button>
+            </div>
+            <div className="note" style={{ marginTop: 20 }}>
+              On success: "AEGIS Bracelet connected to Margaret Wilson · AGS-R80226"
+            </div>
+          </div>
+        </div>
+      </PrintPage>
+
+      {/* 4. Home — Normal */}
+      <PrintPage num="04" title="Home · Normal day" caption="Single current state. AEGIS watches quietly; no action needed.">
+        <HomeView {...stub} scenario="normal" alertState="active" onResolveOk={noop} onMarkFalseAlarm={noop} />
+      </PrintPage>
+
+      {/* 5. Home — Low activity */}
+      <PrintPage num="05" title="Home · Low activity" caption="Activity is below Margaret's usual pattern. Gentle suggested check-in.">
+        <HomeView {...stub} scenario="low" alertState="active" onResolveOk={noop} onMarkFalseAlarm={noop} />
+      </PrintPage>
+
+      {/* 6. Home — Possible fall (active) */}
+      <PrintPage num="06" title="Home · Possible fall detected" caption="Active alert with full action panel and event details.">
+        <HomeView {...stub} scenario="fall" alertState="active" onResolveOk={noop} onMarkFalseAlarm={noop} />
+      </PrintPage>
+
+      {/* 7. Alerts page */}
+      <PrintPage num="07" title="Alerts & history" caption="Current and past safety events — falls, low activity, device issues.">
+        <AlertsView {...stub} scenario="fall" alertState="active" />
+      </PrintPage>
+
+      {/* 8. Activity */}
+      <PrintPage num="08" title="Activity & trends" caption="Margaret compared with her own usual pattern, not other people.">
+        <ActivityView {...stub} scenario="low" />
+      </PrintPage>
+
+      {/* 9. Location */}
+      <PrintPage num="09" title="Location" caption="Private by default. Revealed only during a safety event.">
+        <LocationView {...stub} scenario="fall" alertState="active" />
+      </PrintPage>
+
+      {/* 10. Ask AEGIS */}
+      <PrintPage num="10" title="Ask AEGIS" caption="A focused assistant for bracelet activity, alerts, and device status. Not medical advice.">
+        <AskView {...stub} scenario="normal" />
+      </PrintPage>
+
+      {/* 11. Device */}
+      <PrintPage num="11" title="The bracelet" caption="Sensors work together — no single signal triggers a possible fall.">
+        <DeviceView {...stub} scenario="normal" />
+      </PrintPage>
+
+      {/* 12. Settings */}
+      <PrintPage num="12" title="Settings · alerts & thresholds" caption="Fall detection is always on. Caregivers control escalation, location sharing, privacy.">
+        <SettingsView {...stub} scenario="normal" initialTab="alerts" />
+      </PrintPage>
+
+      {/* Closing */}
+      <section className="pdf-cover">
+        <LogoMark size={56} />
+        <h1 style={{ fontSize: 40, marginTop: 24 }}>Thank you.</h1>
+        <p className="body">
+          AEGIS is a safety and wellness monitoring aid. It is not a medical device
+          and does not diagnose conditions. All data shown is simulated for prototype purposes.
+        </p>
+      </section>
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<PrintApp />);
+
+// Auto-print once fonts are ready, React has mounted, and a small settle delay has passed
+(async () => {
+  try {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
+  } catch (e) {}
+  // Wait for next animation frame so the DOM is painted
+  await new Promise(r => requestAnimationFrame(r));
+  await new Promise(r => requestAnimationFrame(r));
+  // Extra settle for icon rendering / images
+  setTimeout(() => { window.print(); }, 700);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Web server
+flask>=3.0
+flask-cors>=4.0
+
+# Model download from Google Drive (used by predictor.py on first run)
+gdown>=5.1
+
+# Model dependencies
+matplotlib==3.7.0
+numpy==1.23.5
+pandas==1.5.3
+scikit-learn==1.2.1
+seaborn==0.13.0
+
+# TensorFlow 2.12.0 for Apple Silicon (M1/M2/M3/M4)
+# tensorflow-macos IS TensorFlow 2.12.0, repackaged for arm64 macOS.
+# tensorflow-metal enables GPU acceleration on the M4's Neural Engine / GPU.
+tensorflow
+# tensorflow-macos==2.12.0
+# tensorflow-metal==0.8.0
+
+tqdm==4.64.1
