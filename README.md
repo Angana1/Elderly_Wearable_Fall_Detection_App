@@ -1,13 +1,13 @@
 # 👵 AEGIS: Intelligent Wearable Monitoring for an Aging World
 
-
-<img width="1381" height="771" alt="image" src="https://github.com/user-attachments/assets/db087785-cde4-4466-a32c-772816bec078" />
-
 ---
 ### Digital Epidemiology Course Project, Spring 2026
 ### Team Members: Angana, Edgar, Julien, Zahraa
 ---
 
+<img width="1381" height="771" alt="image" src="https://github.com/user-attachments/assets/db087785-cde4-4466-a32c-772816bec078" />
+
+---
 ### Abstract
 Falls in older adults are a major public-health problem; in fact, they are the leading cause of injury-related death among adults over 65, and the strongest predictor of fatal outcome is not the fall itself, but the time spent immobilised on the floor before help arrives. We present AEGIS, a wearable fall-monitoring prototype that resolves both failure modes simultaneously. AEGIS embeds a sensor-fusion pipeline (3-axis accelerometer, MEMS gyroscope, PPG, GPS, BLE 5.3) inside a jewellery-grade bracelet so that the device is worn willingly rather than tolerated. The software translates sensor events into three caregiver-facing states: all clear, low activity, or possible fall. A machine-learning classifier was tuned toward safety-first operation, achieving 80.2% recall and 38.4% precision in the evaluated dataset; therefore, the interface was designed to support human confirmation, false-alarm dismissal, alert escalation within seconds. AEGIS is positioned as a safety and wellness aid, not a diagnostic medical device.
 ---
