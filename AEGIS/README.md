@@ -1,6 +1,6 @@
 # Running AEGIS locally
 
-You'll have **two things running side by side**:
+To run AEGIS locally, please launch **two servers side by side**:
 
 1. **Flask backend** on `http://localhost:5000` — receives the uploaded `.txt`, runs your model, returns the result
 2. **Static web server** on `http://localhost:8000` — serves the dashboard files
@@ -9,7 +9,7 @@ Both speak to each other over `localhost`, so the frontend's "Upload sensor data
 
 ---
 
-## 1. Get the project
+## 1. Download the project
 
 Download the project repository locally. 
 
@@ -58,7 +58,7 @@ On first run, the model will download from Google Drive into `backend/model/cnn_
 
 ## 3. Start the static server for the dashboard (Terminal 2)
 
-Open a **second terminal**, go to the project root (the folder containing `index.html`), and run:
+Open a **second terminal** and go to the project root (the folder containing `index.html`), and run:
 
 ```bash
 cd AEGIS
@@ -80,13 +80,13 @@ In your browser:
 http://localhost:8000/index.html
 ```
 
-Click **"Open demo"** on the welcome screen, then **"Upload sensor data"** in the top-right, and pick a `.txt` file. The frontend will POST it to `http://localhost:5000/predict`, your model will run, and the UI will switch to **Possible fall** with the confidence percentage if `fall_detected == 1`.
+Click **"Open demo"** on the welcome screen, then **"Upload sensor data"** in the top-right, and pick a `.txt` file. The frontend will POST it to `http://localhost:5000/predict`, the model will run, and the UI will switch to **Possible fall** with the confidence percentage if `fall_detected == 1`.
 
 ---
 
 ## 5. Generate a plot of the sensor data
 
-In a separate terminal under AEGIS/backend, enter:
+In a separate terminal under AEGIS/backend, please enter:
 
 ```bash
 source .venv/bin/activate
@@ -110,11 +110,4 @@ The samples are in the format {Fall type (Fxx) or Acitivity type (Dxx)}_{Subject
 
 ## Stopping
 
-In each terminal, press **Ctrl+C**. The venv stays — next time, just:
-
-```bash
-# Terminal 1
-cd aegis/backend && source .venv/bin/activate && python app.py
-# Terminal 2
-cd aegis && python3 -m http.server 8000
-```
+In each terminal, press **Ctrl+C**.
