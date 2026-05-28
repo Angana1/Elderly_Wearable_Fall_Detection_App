@@ -1,9 +1,7 @@
 # 👵 AEGIS: Intelligent Wearable Monitoring for an Aging World
 
----
 ### Digital Epidemiology Course Project, Spring 2026
 ### Team Members: Angana, Edgar, Julien, Zahraa
----
 
 <img width="1381" height="771" alt="image" src="https://github.com/user-attachments/assets/db087785-cde4-4466-a32c-772816bec078" />
 
